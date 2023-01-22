@@ -20,7 +20,16 @@ export const ContactList = () => {
   return (
     <ul>
       {filteredContacts.map(({ id, name, number }) => (
-        <li key={id} style={{ display: 'flex' }}>
+        <li
+          key={id}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '100px 100px',
+            justifyContent: 'space-between',
+            width: '300px',
+            alignItems: 'center',
+          }}
+        >
           <p>
             {name}:{number}
           </p>
