@@ -2,16 +2,18 @@ import { nanoid } from 'nanoid';
 import Button from 'components/Button/button';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+// import { addContact } from 'redux/contactsSlice';
 
 import { Form, Label } from './ContavtForm.styled';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(selectContacts);
 
   const handleChange = e => {
     const { value, name } = e.currentTarget;
@@ -72,7 +74,7 @@ export const ContactForm = () => {
         required
       />
 
-      <Button>add Contact</Button>
+      <Button type="submit">add Contact</Button>
     </Form>
   );
 };

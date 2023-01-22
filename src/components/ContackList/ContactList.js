@@ -1,14 +1,20 @@
 import Button from 'components/Button/button';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact, fetchContacts } from 'redux/operations';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 // import { ButtonList } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const getFilteredContacts = () => {
     const normalizedFilter = filter.toLowerCase();
